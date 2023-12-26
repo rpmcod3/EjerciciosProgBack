@@ -116,9 +116,9 @@ getProducts = async () => {
              
 
 
-       /* productos.getProducts()      */
-    /* productos.getProductsById(3) */
-   /*  productos.deleteProductsById(2) */
+        productos.getProducts()      
+     productos.getProductsById(3) 
+   /productos.deleteProductsById(2) 
 
    productos.updateProducts({
 
