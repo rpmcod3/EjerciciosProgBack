@@ -76,13 +76,12 @@ getProducts = async () => {
         await this.deleteProductsById(id);
         let holdedproducts = await this.readProducts();
         
-
-
         let modifycatedProducts = [
-            {id, ...producto},
-            ...holdedproducts
-        ];
-        await fs.writeFile(this.patch, JSON.stringify(podifycatedProducts));
+            {...producto, id}, ...holdedproducts];
+
+
+
+        await fs.writeFile(this.patch, JSON.stringify (modifycatedProducts));
     };
 
      }
