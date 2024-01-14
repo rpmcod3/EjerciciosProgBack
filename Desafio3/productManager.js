@@ -44,7 +44,12 @@ class ProductManager{
      }
 
 
-getProducts = async () => {
+     
+    getAllProducts(){
+        return this.products;
+    }
+
+    getProducts = async () => {
 
     let segundaRespuesta = await this.readProducts()
    return  console.log (segundaRespuesta)
@@ -135,4 +140,8 @@ getProducts = async () => {
 })
 
 
-module.exports = new ProductManager();
+
+let productManager = new ProductManager();
+
+
+module.exports = productManager;
