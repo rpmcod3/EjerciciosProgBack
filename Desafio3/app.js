@@ -21,6 +21,17 @@ app.get("/products/:id", (req, res) =>{
 
 })
 
+app.get("/products/:id", (req, res) =>{
+
+    let id = req.params.id;
+
+    let producto = productManager.getProductsById(id)
+
+    res.send(producto);
+
+
+})
+
 
 app.listen(3000, () => {
 console.log("Aplicacion funcionando en el puerto 3000")
