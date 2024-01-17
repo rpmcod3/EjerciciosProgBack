@@ -1,5 +1,8 @@
 
-/* import {promises as fs} from "fs" */
+import { promises as fs } from 'fs';
+
+/* const fs = require('fs');
+ */
 
 class ProductManager{
     constructor (){
@@ -29,10 +32,16 @@ class ProductManager{
         }
 
         
-        this.products.push (newProduct)
+        this.products.push (newProduct);
+        try {
+            await fs.writeFile(this.patch, JSON.stringify(this.products));
+            console.log("Product added successfully.");
+        } catch (err) {
+            console.error("Error writing to file:", err);
+        }
     
-
-     await fs.writeFile(this.patch, JSON.stringify(this.products));
+        
+     /* await fs.writeFile(this.patch, JSON.stringify(this.products)); */
         
 
      };
@@ -57,16 +66,32 @@ class ProductManager{
 
 
     getProductsById =  async (id) => {
-        let terceraRespuesta = await this.readProducts()
-       if (!terceraRespuesta.find(product => product.id ===id)){
+        const terceraRespuesta = await this.readProducts()
+
+
+         const foundProduct = terceraRespuesta.find(product => product.id === id);
+
+        if (!foundProduct) {
+            console.log("No encontramos tu producto");
+            return null;
+        } else {
+            return foundProduct;
+        }
+ 
+
+     /*   if (!terceraRespuesta.find(product => product.id ===id)){
         console.log("No encontramos tu producto")
 
        }else {
         console.log(terceraRespuesta.find(product => product.id ===id))
-       }
-        
+       } */
+         
 
-    };
+    }; 
+
+    
+  
+
 
     deleteProductsById = async (id) => {
         let terceraRespuesta = await this.readProducts();
@@ -142,6 +167,11 @@ class ProductManager{
 
 
 let productManager = new ProductManager();
+
+
+
+
+
 
 
 module.exports = productManager;
